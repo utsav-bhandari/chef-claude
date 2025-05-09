@@ -1,12 +1,22 @@
 import { useState } from "react";
+import IngredientsList from "./IngredientsList";
+import ClaudeRecipe from "./ClaudeRecipe";
+import {getRecipeMistral} from "../services/ai"
 
 export default function Main() {
-    let [ingredients, setIngredients] = useState([]);
-    let ingredientsList = ingredients.map(i => <li key={i}>{i}</li>);
+    const [ingredients, setIngredients] = useState(
+        ["all the main spices", "pasta", "ground beef", "tomato paste"]
+    );
+
+    const [recipeShown, setRecipeShown] = useState(false)
 
     function addIngredient(formData) {
-        const newIngredient = formData.get("ingredient")
-        setIngredients(prevIngredientsList => [...prevIngredientsList, newIngredient])
+        const newIngredient = formData.get("ingredient");
+        setIngredients(prevIngredientsList => [...prevIngredientsList, newIngredient]);
+    }
+
+    function toggleRecipeShown() {
+        setRecipeShown(prevRecipeShown => !prevRecipeShown)
     }
 
     return (
@@ -18,22 +28,15 @@ export default function Main() {
                     aria-label="Add ingredient"
                     name="ingredient"
                     />
-                <button>
-                    Add ingredient
-                </button>
+                <button>Add ingredient</button>
             </form>
-            {ingredientsList.length > 0 &&     
-                <section>
-                    <h2>Ingredients on hand:</h2>
-                    <ul className="ingredients-list" aria-live="polite">{ingredientsList}</ul>
-                    {ingredients.length > 3 && <div className="get-recipe-container">
-                        <div>
-                            <h3>Ready for a recipe?</h3>
-                            <p>Generate a recipe from your list of ingredients.</p>
-                        </div>
-                        <button>Get a recipe</button>
-                    </div>}
-                </section>}
+            {ingredients.length > 0 && 
+            <IngredientsList 
+                ingredients={ingredients}
+                toggleRecipeShown={toggleRecipeShown}
+                />
+            }
+            {recipeShown && <ClaudeRecipe />}
         </main>
     )
 }
