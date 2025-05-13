@@ -1,9 +1,6 @@
-import 'dotenv/config';
-
 import { Together } from 'together-ai';
 
 const together = new Together({
-    // apiKey: "284c2a47ab2d1dedc7aabe1fe02eba07f5f8f1625c8b62cbaf405e96ca8533d6",
   apiKey: process.env.TOGETHER_API_KEY,
 });
 
