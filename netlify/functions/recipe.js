@@ -10,26 +10,21 @@ You are an assistant that receives a list of ingredients that a user has and sug
 
 export default async (req, context) => {
   try {
-    const { ingredients } = await req.json();
-    const ingredientsString = ingredients.join(", ");
+    let ingredientsString = '';
+    const body = await req.json();
+    const { ingredients } = body;
+    ingredientsString = ingredients.join(", ");
 
-    const stream = await together.chat.completions.create({
-      model: 'deepseek-ai/DeepSeek-R1-Distill-Llama-70B-free',
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
-      ],
-      stream: true,
-    });
+    const result = await together.chat.completions.create({
+    model: 'meta-llama/Llama-Vision-Free',
+    messages: [
+    { role: "system", content: SYSTEM_PROMPT },
+    { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
+    ]});
 
-    let fullMessage = '';
-    for await (const chunk of stream) {
-      fullMessage += chunk.choices?.[0]?.delta?.content || '';
-    }
+    const fullMessage = result.choices?.[0]?.message?.content || '';
 
-    const cleanedMessage = fullMessage.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
-
-    return new Response(JSON.stringify({ recipe: cleanedMessage }), {
+    return new Response(JSON.stringify({ recipe: fullMessage }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
