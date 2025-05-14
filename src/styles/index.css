@@ -68,10 +68,9 @@ main {
 .ingredient-requirement-message {
     color: #EF4444;
     font-size: 0.875rem;
-    margin-top: 8px;
+    margin: 8px auto;
     font-weight: 500;
-    display: block;
-    margin-left: 34%;
+    width: fit-content;  
 }
 
 section.ingredients-list-container {
