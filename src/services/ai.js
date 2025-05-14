@@ -1,4 +1,4 @@
-export async function getRecipeFromMistral(ingredientsArr) {
+export async function getRecipeFromModel(ingredientsArr) {
   try {
     const response = await fetch("/.netlify/functions/recipe", {
       method: "POST",
@@ -9,6 +9,7 @@ export async function getRecipeFromMistral(ingredientsArr) {
     });
 
     const data = await response.json();
+
     return data.recipe;
   } catch (err) {
     console.error(err.message);
