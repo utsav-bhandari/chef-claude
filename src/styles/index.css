@@ -157,12 +157,12 @@ main {
     max-width: fit-content;
 }
 
-.get-recipe-container button:hover:not([disabled])::before {
-	content: "👨‍🍳Get a recipe🍽️";
+.get-recipe-container button:hover:not([disabled])::before{
+    content: "👨‍🍳";
 }
 
-.get-recipe-container button:hover:not([disabled]) span {
-    display: none;
+.get-recipe-container button:hover:not([disabled])::after{
+    content: "🍽️";
 }
 
 .get-recipe-container.visible {
