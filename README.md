@@ -9,12 +9,11 @@ Check out the live demo here: [Chef Claude Demo](https://claude-chef-demo.netlif
 ## Features
 
 - **Add Ingredients**: Input a list of ingredients and submit them to receive a recipe suggestion.
-- **AI-Powered Recipe Suggestions**: Based on the provided ingredients, an AI model will suggest a recipe in markdown format.
+- **AI-Powered Recipe Suggestions**: Based on the provided ingredients, an AI model will suggest a recipe in proper format.
 - **Interactive UI**: 
   - Add, remove, and clear ingredients.
   - View suggested recipes with an option to clear them.
   - A smooth scroll behavior to focus on the generated recipe.
-- **Clear Recipe**: Easily remove the recipe once you're done.
 
 ---
 
