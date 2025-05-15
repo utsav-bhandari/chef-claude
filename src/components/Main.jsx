@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import IngredientsList from "./IngredientsList";
 import ClaudeRecipe from "./ClaudeRecipe";
 import {getRecipeFromModel} from "../services/ai"
@@ -7,13 +7,21 @@ export default function Main() {
     const [ingredients, setIngredients] = useState([]);
     const [recipe, setRecipe] = useState("");
     const [isProcessing, setIsProcessing] = useState(false);
+    
+    const recipeSection = useRef(null)
 
+    useEffect(() => {
+        if (recipe && recipeSection.current !== null) {
+            recipeSection.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [recipe]);
 
     function addIngredient(formData) {
         const newIngredient = formData.get("ingredient");
         if (newIngredient) setIngredients(prevIngredientsList => [...prevIngredientsList, newIngredient]);
     }
 
+    
     async function getRecipe() {
         if (isProcessing) return;
         setIsProcessing(true);
@@ -22,17 +30,6 @@ export default function Main() {
         setRecipe(MarkdownRecipe);
         setIsProcessing(false);
     }
-
-    useEffect(() => {
-        if (recipe) {
-            const recipeSection = document.querySelector(".suggested-recipe-container");
-            if (recipeSection) {
-                setTimeout(() => {
-                    recipeSection.scrollIntoView({ behavior: "smooth" });
-                }, 50);
-            }
-        }
-    }, [recipe]);
 
     return (
         <main>
@@ -60,7 +57,7 @@ export default function Main() {
                 isProcessing={isProcessing}
                 />
             }
-            {recipe && <ClaudeRecipe recipe={recipe} setRecipe={setRecipe}/>}
+            {recipe && <ClaudeRecipe recipe={recipe} setRecipe={setRecipe} recipeSection={recipeSection}/>}
         </main>
     )
 }

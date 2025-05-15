@@ -43,9 +43,7 @@ export default function IngredientsList(props) {
                 onClick={props.getRecipe}
                 disabled={props.isProcessing}
                 >
-                    <span>
-                        {props.isProcessing ? "Processing..." : "Get a recipe"}
-                    </span>
+                    {props.isProcessing ? "Processing..." : "Get a recipe"}
                 </button>
             </div>
         </section>
