@@ -55,11 +55,12 @@ export default function Main() {
             {ingredients.length > 0 && 
             <IngredientsList 
                 ingredients={ingredients}
+                setIngredients={setIngredients}
                 getRecipe={getRecipe}
                 isProcessing={isProcessing}
                 />
             }
-            {recipe && <ClaudeRecipe recipe={recipe}/>}
+            {recipe && <ClaudeRecipe recipe={recipe} setRecipe={setRecipe}/>}
         </main>
     )
 }

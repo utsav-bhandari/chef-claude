@@ -57,7 +57,7 @@ main {
     font-weight: 500;
     cursor: pointer;
     border: none;
-    white-space: nowrap;
+    max-width: fit-content;
 }
 
 .add-ingredient-form > button::before {
@@ -68,23 +68,56 @@ main {
 .ingredient-requirement-message {
     color: #EF4444;
     font-size: 0.875rem;
-    margin: 8px auto;
+    text-align: center;
     font-weight: 500;
-    width: fit-content;  
 }
 
-section.ingredients-list-container {
+.ingredients-list-container {
     margin: 0 auto;
     width: fit-content;
 }
 
-ul.ingredients-list {
-    margin-bottom: 48px;
+.ingredients-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-ul.ingredients-list > li {
+.ingredients-list {
+    margin-bottom: 48px;
+    padding: 0px;
+    list-style: none;;
+}
+
+.ingredients-list > li {
     color: #475467;
     line-height: 28px;
+    margin-inline-start: 10px;
+}
+
+.rm-ingredient-btn {
+    margin-inline-end: 10px;
+    border-radius: 6px;
+    font-family: Inter, sans-serif;
+    background-color: #141413;
+    color: #FAFAF8;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    max-width: fit-content;
+}
+
+.rm-ingredient-btn:hover {
+    background-color: #EF4444;
+}
+
+.rm-all-btn {
+    padding: 5px;
+}
+
+.rm-all-btn:hover {
+    background-color: #EF4444;
 }
 
 .get-recipe-container {
@@ -121,7 +154,15 @@ ul.ingredients-list > li {
     font-family: Inter, sans-serif;
     font-size: 0.875rem;
     cursor: pointer;
-    white-space: nowrap;
+    max-width: fit-content;
+}
+
+.get-recipe-container button:hover:not([disabled])::before {
+	content: "👨‍🍳Get a recipe🍽️";
+}
+
+.get-recipe-container button:hover:not([disabled]) span {
+    display: none;
 }
 
 .get-recipe-container.visible {
@@ -134,7 +175,7 @@ ul.ingredients-list > li {
     font-size: 1.125rem;
     font-weight: 400;
     width: 100%;
-    max-width: 600px;
+    max-width: 530px;
     margin: auto;
 }
 
