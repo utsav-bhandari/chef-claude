@@ -1,3 +1,5 @@
+Note: Project is now obsolete due to maintainance costs. 
+
 # Chef Claude - Recipe Generator
 
 Welcome to **Chef Claude**, a React-based web application that allows users to input ingredients and get recipe suggestions powered by an AI model. Chef Claude is designed to provide users with an interactive and intuitive experience where they can add or remove ingredients, get recipe suggestions, and clear generated recipes—all in a clean, user-friendly interface.
